@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>112學年度慈濟醫資系網頁程式設計一期末考試HTML+CSS+JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+
+        #logo {
+            height: 40px;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 1em;
+            margin: 0;
+            padding: 0;
+        }
+
+            .menu > li {
+                position: relative;
+            }
+
+            .menu a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5em 1em;
+                display: block;
+            }
+
+                .menu a:hover {
+                    background-color: #575757;
+                    border-radius: 4px;
+                }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+            .submenu a {
+                white-space: nowrap;
+            }
+
+        .menu > li:hover .submenu {
+            display: block;
+        }
+
+        .submenu .submenu {
+            top: 0;
+            left: 100%;
+            margin-left: 1px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"], input[type="file"], textarea, select {
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+            button:hover {
+                background-color: #575757;
+            }
+
+        #species {
+            margin-top: 2em;
+        }
+
+        .species-row {
+            display: flex;
+            gap: 1em;
+        }
+
+        .species-column {
+            flex: 1;
+        }
+
+        .species-group {
+            margin-bottom: 1em;
+        }
+
+        .subgroup {
+            margin-left: 1em;
+        }
+
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            width: 20%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .sidebar button {
+                width: 100%;
+                padding: 10px;
+                background-color: #00BFFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+        .external-resources {
+            padding: 10px;
+        }
+
+            .external-resources h3 {
+                margin-top: 0;
+                font-size: 18px;
+                border-bottom: 1px solid #ccc;
+                padding-bottom: 5px;
+            }
+
+            .external-resources ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .external-resources li {
+                margin-bottom: 10px;
+            }
+
+                .external-resources li a {
+                    text-decoration: none;
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    background-color: white;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                }
+
+                    .external-resources li a:hover {
+                        background-color: #f0f0f0;
+                    }
+
+                .external-resources li img {
+                    margin-right: 10px;
+                }
+
+        .main-content {
+            padding: 20px;
+            flex-grow: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .alert {
+            background-color: #00FFFF;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .alert strong {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .alert a {
+                color: #0000EE;
+                text-decoration: underline;
+            }
+
+        .search-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .tab-buttons button {
+                padding: 10px;
+                background-color: #e0e0e0;
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                flex: 1;
+                margin-right: 5px;
+                position: relative;
+            }
+
+                .tab-buttons button:last-child {
+                    margin-right: 0;
+                }
+
+            .tab-buttons .active {
+                background-color: #ccc;
+                font-weight: bold;
+            }
+
+            .tab-buttons button:hover {
+                border-bottom: 2px solid #00BFFF;
+            }
+
+        .tab-content {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .tab-content .search-input {
+                display: flex;
+                flex-direction: column;
+            }
+
+                .tab-content .search-input input[type="text"] {
+                    padding: 10px;
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .tab-content .search-input button {
+                    padding: 10px;
+                    background-color: #000;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .tab-content .search-input p {
+                    margin-top: 10px;
+                }
+
+                .tab-content .search-input label {
+                    margin-bottom: 5px;
+                }
+
+                .tab-content .search-input select {
+                    padding: 10px;
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+
+            .tab-content h3 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .tab-content ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+                .tab-content ul li {
+                    margin-bottom: 5px;
+                }
+
+                    .tab-content ul li label {
+                        margin-left: 5px;
+                    }
+
+            .tab-content a {
+                color: #0000EE;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="logo.png" alt="FlyBase" id="logo">
+            <ul class="menu">
+                <li><a href="#">Tools</a></li>
+                <li><a href="#">Downloads</a></li>
+                <li>
+                    <a href="#">Links</a>
+                    <ul class="submenu">
+                        <li><a href="#">External Resources</a></li>
+                        <li><a href="#">Model Organisms (MODs)</a></li>
+                        <li>
+                            <a href="#" class="has-submenu">Stock Collections</a>
+                            <ul class="submenu">
+                                <li><a href="#">Bloomington Drosophila Stock Center (BDSC)</a></li>
+                                <li><a href="#">FlyORF</a></li>
+                                <li><a href="#">Korea Drosophila Resource Center (KDRC)</a></li>
+                                <li><a href="#">Kyoto Stock Center</a></li>
+                                <li><a href="#">NIG-FLY</a></li>
+                                <li><a href="#">Tsinghua Fly Center (THFC)</a></li>
+                                <li><a href="#">Vienna Drosophila Resource Center (VDRC)</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="#">BDGP</a></li>
+                        <li><a href="#">DGRC</a></li>
+                        <li><a href="#">DRSC/TRiP</a></li>
+                        <li><a href="#">DIS by issue</a></li>
+                        <li><a href="#">FlyBook</a></li>
+                        <li><a href="#">FlyExpress</a></li>
+                        <li><a href="#">Interactive Fly</a></li>
+                        <li><a href="#">Virtual Fly Brain</a></li>
+                        <li><a href="#">FlyCyc</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Species</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+                <li>
+                    <input type="text" placeholder="Jump to Gene">
+                    <button>Go</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <button>Citing FlyBase</button>
+            <div class="external-resources">
+                <h3>External Resources</h3>
+                <ul>
+                    <li><a href="#"><img src="news_icon.png" alt="News Icon" width="20">News and Outreach</a></li>
+                    <li><a href="#"><img src="journals_icon.png" alt="Journals Icon" width="20">Drosophila Journals and Protocols</a></li>
+                    <li><a href="#"><img src="tool_icon.png" alt="Tool Icon" width="20">Tool/Reagent Resources</a></li>
+                    <li><a href="#"><img src="meetings_icon.png" alt="Meetings Icon" width="20">Meetings/Courses/Jobs</a></li>
+                    <li><a href="#"><img src="disease_icon.png" alt="Disease Icon" width="20">Drosophila in Disease Research</a></li>
+                    <li><a href="#"><img src="species_icon.png" alt="Species Icon" width="20">Inter-species</a></li>
+                    <li><a href="#"><img src="boards_icon.png" alt="Boards Icon" width="20">Fly Boards</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="alert">
+                <strong>FlyBase NEEDS YOUR HELP!</strong>
+                Please <a href="#">PAY</a> your yearly website access fee!<br>
+                Help FlyBase's significant budget cuts with a website access fee of $150.00 PER person / PER year<br>
+                Questions? See this <a href="#">FAQ</a> or <a href="mailto:help@flybase.org">email us</a>. Optional tax-deductible contributions <a href="#">here</a>.
+            </div>
+            <div class="search-container">
+                <h2>QuickSearch</h2>
+                <div class="tab-buttons">
+                    <button class="tablink active" onclick="openTab(event, 'human-disease')">Human Disease</button>
+                    <button class="tablink" onclick="openTab(event, 'protein-domains')">Protein Domains</button>
+                    <button class="tablink" onclick="openTab(event, 'gene-groups')">Gene Groups</button>
+                    <button class="tablink" onclick="openTab(event, 'pathways')">Pathways</button>
+                    <button class="tablink" onclick="openTab(event, 'go')">GO</button>
+                    <button class="tablink" onclick="openTab(event, 'data-class')">Data Class</button>
+                    <button class="tablink" onclick="openTab(event, 'search-flybase')">Search FlyBase</button>
+                    <button class="tablink" onclick="openTab(event, 'homologs')">Homologs</button>
+                </div>
+                <div id="human-disease" class="tab-content" style="display: block;">
+                    <div class="search-input">
+                        <label for="search-box">Search using a disease name/ID/synonym, or a human or fly gene symbol/ID:</label>
+                        <input type="text" id="search-box" placeholder="glaucoma, DOID:1686, etc.">
+                        <button>Search</button>
+                        <p>Alternatively, <a href="#">browse all Human Disease Model reports</a></p>
+                        <p>Note: Wild cards (*) can be added to your search term</p>
+                    </div>
+                </div>
+                <div id="protein-domains" class="tab-content">
+                    <div class="search-input">
+                        <label for="protein-domains-box">Search for protein domains:</label>
+                        <input type="text" id="protein-domains-box" placeholder="Enter protein domain...">
+                        <button>Search</button>
+                    </div>
+                </div>
+                <div id="gene-groups" class="tab-content">
+                    <div class="search-input">
+                        <label for="gene-groups-box">Search for gene groups:</label>
+                        <input type="text" id="gene-groups-box" placeholder="Enter gene group...">
+                        <button>Search</button>
+                    </div>
+                </div>
+                <div id="pathways" class="tab-content">
+                    <div class="search-input">
+                        <label for="pathways-box">Search for pathways:</label>
+                        <input type="text" id="pathways-box" placeholder="Enter pathway...">
+                        <button>Search</button>
+                    </div>
+                </div>
+                <div id="homologs" class="tab-content">
+                    <div class="search-input">
+                        <label for="species-select">Species:</label>
+                        <select id="species-select">
+                            <option value="dmel">D. melanogaster</option>
+                            <option value="hsap">H. sapiens</option>
+                            <option value="rnor">R. norvegicus</option>
+                            <!-- Add more species options as needed -->
+                        </select>
+                        <label for="gene-input">Gene(s):</label>
+                        <input type="text" id="gene-input" placeholder="e.g. Cdk1, CG5363, FBgn0004106, 34411">
+                        <button>Search</button>
+                        <h3>Output</h3>
+                        <p>HUMAN AND MODEL ORGANISMS (via DIOPT)</p>
+                        <ul>
+                            <li><input type="checkbox" id="hsap" checked><label for="hsap"> H. sapiens (Human)</label></li>
+                            <li><input type="checkbox" id="rnor" checked><label for="rnor"> R. norvegicus (Norway rat)</label></li>
+                            <li><input type="checkbox" id="mmus" checked><label for="mmus"> M. musculus (Laboratory mouse)</label></li>
+                            <li><input type="checkbox" id="xtro" checked><label for="xtro"> X. tropicalis (Western clawed frog)</label></li>
+                            <li><input type="checkbox" id="drer" checked><label for="drer"> D. rerio (Zebrafish)</label></li>
+                            <li><input type="checkbox" id="cele" checked><label for="cele"> C. elegans (Nematode, roundworm)</label></li>
+                            <li><input type="checkbox" id="amel" checked><label for="amel"> D. melanogaster (Fruit fly)</label> <a href="#">PARALOGS</a></li>
+                            <li><input type="checkbox" id="agam" checked><label for="agam"> A. gambiae (African malaria mosquito)</label></li>
+                            <li><input type="checkbox" id="atha" checked><label for="atha"> A. thaliana (Thale cress)</label></li>
+                            <li><input type="checkbox" id="scer" checked><label for="scer"> S. cerevisiae (Brewer’s yeast)</label></li>
+                            <li><input type="checkbox" id="spom" checked><label for="spom"> S. pombe (Fission yeast)</label></li>
+                            <li><input type="checkbox" id="ecol" checked><label for="ecol"> E. coli (Enterobacterium)</label></li>
+                        </ul>
+                        <a href="#" onclick="checkAll()">un/check all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(event, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabId).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("human-disease").style.display = "block";
+            document.querySelector(".tablink").classList.add("active");
+        });
+
+        function checkAll() {
+            var checkboxes = document.querySelectorAll("#homologs input[type='checkbox']");
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = !checkbox.checked;
+            });
+        }
+    </script>
+</body>
+</html>
